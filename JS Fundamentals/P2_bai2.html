@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>P2_2</title>
+    <script>
+        function calcTip(bill) {
+            return (bill >= 50 && bill <= 300) ? bill * 0.15 : bill * 0.20;
+        }
+
+        function calculateTips() {
+            const bill1 = parseFloat(document.getElementById('bill1').value);
+            const bill2 = parseFloat(document.getElementById('bill2').value);
+            const bill3 = parseFloat(document.getElementById('bill3').value);
+
+            const bills = [bill1, bill2, bill3];
+
+            const tips = bills.map(bill => calcTip(bill));
+
+            const total = bills.map((bill, index) => bill + tips[index]);
+
+            let resultMessage = "<h3>Kết quả tính toán:</h3>";
+            for (let i = 0; i < bills.length; i++) {
+                resultMessage += `
+                    <p>Bill ${i + 1}: ${bills[i].toFixed(2)} | Tip: ${tips[i].toFixed(2)} | Total: ${total[i].toFixed(2)}</p>
+                `;
+            }
+
+            document.getElementById('result').innerHTML = resultMessage;
+        }
+    </script>
+</head>
+<body>
+    <form onsubmit="event.preventDefault(); calculateTips();">
+        <h1>Các bill</h1>
+        <label for="bill1">Bill 1:</label>
+        <input type="number" id="bill1" step="0.1" required><br>
+        <label for="bill2">Bill 2:</label>
+        <input type="number" id="bill2" step="0.01" required><br>
+        <label for="bill3">Bill 3:</label>
+        <input type="number" id="bill3" step="0.01" required><br><br>
+
+        <button type="submit">Tính</button>
+    </form>
+
+    <div id="result" style="margin-top: 20px; font-size: 16px;"></div>
+</body>
+</html>

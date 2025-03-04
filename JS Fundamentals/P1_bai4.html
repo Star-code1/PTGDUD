@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>P1_4</title>
+    <script>
+        function bill() {
+            let tienbd = parseFloat(document.getElementById("tienbd").value);
+            
+            if(50 < tienbd <= 300) {
+                tiensautip = tienbd*(15/100)
+                tientong = tiensautip + tienbd;
+                document.getElementById("result").innerHTML = `
+                <p>The bill was ${tienbd}, the tip was ${tiensautip}, total was ${tientong}</p>
+            `;
+            }
+            else{
+                tiensautip = tienbd*(20/100)
+                tientong = tiensautip + tienbd;
+                document.getElementById("result").innerHTML = `
+                <p>The bill was ${tienbd}, the tip was ${tiensautip}, total was ${tientong}</p>
+            `;
+            }
+            
+        }
+    </script>
+</head>
+<body>
+    <h1>Tính tiền</h1>
+    <form onsubmit="event.preventDefault(); bill();">
+        <h3>Bill</h3>
+        <label for="">Tiền ban đầu:</label>
+        <input type="number" id="tienbd" step="0.1" required><br>
+
+        <button type="submit">Tính tiền</button>
+    </form>
+
+    <div id="result" style="margin-top: 20px; font-size: 16px;"></div>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>P1_3</title>
+    <script>
+        function calculateBMI() {
+            
+            
+            let dolphin1 = parseFloat(document.getElementById("dolphin1").value);
+            let dolphin2 = parseFloat(document.getElementById("dolphin2").value);
+            let dolphin3 = parseFloat(document.getElementById("dolphin3").value);
+            let koalas1 = parseFloat(document.getElementById("koalas1").value);
+            let koalas2 = parseFloat(document.getElementById("koalas2").value);
+            let koalas3 = parseFloat(document.getElementById("koalas3").value);
+            
+
+            
+            let trungBinhDolphin =(dolphin1 + dolphin2 + dolphin3)/3;
+            let trungBinhKoalas = (koalas1 + koalas2 + koalas3)/3;
+
+            let soSanh = trungBinhDolphin> trungBinhKoalas;
+
+            if(trungBinhDolphin < 100 ){
+                document.getElementById("result").innerHTML = `
+                <p>Số điểm trung bình Đội Dolphin phải lớn hơn 100</p>
+            `;
+            }
+            else if (trungBinhKoalas < 100 ){
+                document.getElementById("result").innerHTML = `
+                <p>Số điểm trung bình Đội koalas phải lớn hơn 100</p>
+            `;
+            }
+            else if(trungBinhDolphin > trungBinhKoalas ){
+                document.getElementById("result").innerHTML = `
+                <p>Đội Dolphin thắng với số điểm ${trungBinhDolphin}</p>
+            `;
+            }else if(trungBinhDolphin < trungBinhKoalas){
+                document.getElementById("result").innerHTML = `
+                <p>Đội Koalas thắng ${trungBinhKoalas}</p>
+            `;
+            }
+            else{
+                document.getElementById("result").innerHTML = `
+                <p>Hai đội hòa nhau :${trungBinhDolphin}=${trungBinhKoalas}</p>
+                `;
+            }
+            
+        }
+    </script>
+</head>
+<body>
+    <h1>Cuộc thi đấu giữa Dolphin và Koalas</h1>
+    <form onsubmit="event.preventDefault(); calculateBMI();">
+
+        <h2>Đội Dolphin</h2>
+        <label for="">Điểm vòng 1:</label>
+        <input type="number" id="dolphin1" step="0.1" required>
+        <label for="">Điểm vòng 2:</label>
+        <input type="number" id="dolphin2" step="0.1" required>
+        <label for="">Điểm vòng 3:</label>
+        <input type="number" id="dolphin3" step="0.1" required>
+        <h2>đội Koalas</h2>
+        <label for="markHeight">điểm vòng 1:</label>
+        <input type="number" id="koalas1" step="0.01" required>
+        <label for="markHeight">điểm vòng 2:</label>
+        <input type="number" id="koalas2" step="0.01" required>
+        <label for="markHeight">điểm vòng 3:</label>
+        <input type="number" id="koalas3" step="0.01" required> <br>
+
+        
+
+        <br><button type="submit">Đội thắng</button>
+    </form>
+
+    <div id="result" style="margin-top: 20px; font-size: 16px;"></div>
+</body>
+</html>

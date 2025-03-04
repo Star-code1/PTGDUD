@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>P2_4</title>
+</head>
+<script>
+    function bill() {
+        const bill = parseFloat(document.getElementById('bill').value.trim() );
+        const bills = bill.split(',').map(Number);
+        const tip = bill >= 50 && bill <= 300 ? bill * 0.15 : bill * 0.20;
+        const total = bill + tip;
+        document.getElementById('result').innerHTML = `
+            <p>Bill: ${bill.toFixed(2)}</p>
+            <p>Tip: ${tip.toFixed(2)}</p>
+            <p>Total: ${total.toFixed(2)}</p>
+        `;
+    }
+</script>
+<body>
+    <form onsubmit="event.preventDefault(); bill();">
+        Bill: <input type="text" id="bill" step="0.1">
+        <button type="submit">Tinh</button>
+        <div id="result" style="margin-top: 20px; font-size: 16px;"></div>
+    </form>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>P2_1</title>
+    <script>
+        const calcAverage = () => {
+            const dolphin1 = parseFloat(document.getElementById("dolphin1").value);
+            const dolphin2 = parseFloat(document.getElementById("dolphin2").value);
+            const dolphin3 = parseFloat(document.getElementById("dolphin3").value);
+            const koalas1 = parseFloat(document.getElementById("koalas1").value);
+            const koalas2 = parseFloat(document.getElementById("koalas2").value);
+            const koalas3 = parseFloat(document.getElementById("koalas3").value);
+
+            const avgDolphins = (dolphin1 + dolphin2 + dolphin3) / 3;
+            const avgKoalas = (koalas1 + koalas2 + koalas3) / 3;
+
+            return { avgDolphins, avgKoalas };
+        };
+
+        const checkWinner = () => {
+            const { avgDolphins, avgKoalas } = calcAverage();
+
+            let resultMessage = '';
+            if (avgDolphins >= 2 * avgKoalas) {
+                resultMessage = `Đội Dolphin thắng (${avgDolphins.toFixed(2)} vs. ${avgKoalas.toFixed(2)})`;
+            } else if (avgKoalas >= 2 * avgDolphins) {
+                resultMessage = `Đội Koalas thắng (${avgKoalas.toFixed(2)} vs. ${avgDolphins.toFixed(2)})`;
+            } else {
+                resultMessage = `Không có đội nào thắng! (${avgDolphins.toFixed(2)} vs. ${avgKoalas.toFixed(2)})`;
+            }
+
+            document.getElementById("result").innerHTML = `<p>${resultMessage}</p>`;
+        };
+    </script>
+</head>
+<body>
+    <h1>Cuộc thi đấu giữa Dolphin và Koalas</h1>
+    <form onsubmit="event.preventDefault(); checkWinner();">
+
+        <h2>Đội Dolphin</h2>
+        <label for="">Điểm vòng 1:</label>
+        <input type="number" id="dolphin1" step="0.1" required>
+        <label for="">Điểm vòng 2:</label>
+        <input type="number" id="dolphin2" step="0.1" required>
+        <label for="">Điểm vòng 3:</label>
+        <input type="number" id="dolphin3" step="0.1" required>
+
+        <h2>Đội Koalas</h2>
+        <label for="">Điểm vòng 1:</label>
+        <input type="number" id="koalas1" step="0.01" required>
+        <label for="">Điểm vòng 2:</label>
+        <input type="number" id="koalas2" step="0.01" required>
+        <label for="">Điểm vòng 3:</label>
+        <input type="number" id="koalas3" step="0.01" required> <br>
+
+        <br><button type="submit">Đội thắng</button>
+    </form>
+
+    <div id="result" style="margin-top: 20px; font-size: 16px;"></div>
+</body>
+</html>

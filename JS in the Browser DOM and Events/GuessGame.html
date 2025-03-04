@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GuessGame</title>
+</head>
+<script>
+    let answer = Math.floor(Math.random() * 100) + 1;
+    let chance = 10;
+    window.onload = function () {
+        document.getElementById('submit').onclick = function(event) {
+            event.preventDefault();
+            const guess = parseInt(document.getElementById('secretNumber').value);
+            const result = document.getElementById('result');
+            const message = document.getElementById('message');
+            chanceDiv = document.getElementById('chance');
+            pointDiv = document.getElementById('score');
+            if (guess === answer) {
+                var point = chance;
+                chance = 10;
+                pointDiv.innerHTML = "Your score is : " + point;
+                result.innerHTML = "Answer is : " + answer;
+                message.innerHTML = "You win !";
+                chanceDiv.innerHTML = "You have "+ chance + " chances";
+            } else if (guess > answer) {
+                chance = chance - 1;
+                if (chance === 0) {
+                    message.innerHTML = "You lose !";
+                    chanceDiv.innerHTML = "You have "+ chance + " chances";
+                }
+                message.innerHTML = "Too high !";
+                chanceDiv.innerHTML = "You have "+ chance + " chances";
+            }else if (guess < answer) {
+                chance = chance - 1;
+                if (chance === 0) {
+                    message.innerHTML = "You lose !";
+                    chanceDiv.innerHTML = "You have "+ chance + " chances";
+                }
+                message.innerHTML = "Too low !";
+                chanceDiv.innerHTML = "You have "+ chance + " chances";
+            }
+        }
+        document.getElementById('reset').onclick = function(event) {
+            event.preventDefault();
+            answer = Math.floor(Math.random() * 100) + 1;
+            chance = 10;
+            document.getElementById('result').innerHTML = "Answer is : ?";
+            document.getElementById('message').innerHTML = "";
+            document.getElementById('chance').innerHTML = "You have "+ chance + " chances";
+            document.getElementById('point').innerHTML = "";
+        }
+    }
+    
+</script>
+<body>
+        <h1>Guess Game<h1>
+            <div id="result" style="background-color: #222; width: 15rem; color: #fff;">Answer is : ?</div>
+            <div id="chance">You have 10 chances</div>
+            <input type="number" id="secretNumber">
+            <button id="submit">Submit</button>
+            <button id="reset">Reset</button>
+            <div id="message"></div>
+            <div id="score"></div>
+</body>
+</html>
